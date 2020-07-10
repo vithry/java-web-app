@@ -37,9 +37,9 @@ pipeline {
         stage('Build Docker Img'){
           steps {
             script {
-              sh "sudo chown -R $USER: ${WORKSPACE}"
+              sh "sudo chown -R $USER: /var/lib/jenkins/workspace/java-web-app@2"
               writeFile file: "Dockerfile", text: """FROM java:8-jdk-alpine
-              COPY target/dependency/jetty-runner.jar /usr/app/
+              COPY ./target/dependency/jetty-runner.jar /usr/app/
               WORKDIR /usr/app
               EXPOSE 8080
               ENTRYPOINT ["java", "-jar", "jetty-runner.jar"]
